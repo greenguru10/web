@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <style>
+        /* Basic styling for the redirect page */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            text-align: center;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 350px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            color: #28a745;
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        p {
+            color: #6c757d;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .logo-container {
+            width: 120px; /* Adjust size as needed */
+            height: 120px; /* Adjust size as needed */
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff; /* Ensure background color matches container */
+            border-radius: 50%;
+            overflow: hidden; /* Ensure the logo fits within the circular container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            width: 100%; /* Scale logo to fit container */
+            height: 100%; /* Scale logo to fit container */
+            object-fit: contain; /* Maintain aspect ratio */
+        }
+
+        .loader {
+            border: 8px solid #e0e0e0; /* Light grey */
+            border-top: 8px solid #28a745; /* Green */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1.5s linear infinite;
+            margin: 0 auto 25px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        // Redirect to the final page after a short delay
+        setTimeout(function() {
+            window.location.href = 'index.html'; // Final destination
+        }, 4000); // 4000 milliseconds (4 seconds) delay
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo"> <!-- Replace with your logo path -->
+        </div>
+        <div class="loader"></div>
+        <h1>Redirecting...</h1>
+        <p>Please wait while we redirect you to the Store:)</p>
+    </div>
+</body>
+</html>

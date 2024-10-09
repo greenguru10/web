@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenGURU - Eco-Friendly Products for a Sustainable Future</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header class="bg-primary text-primary-foreground sticky top-0 z-50">
+        <div class="container">
+            <nav>
+                <a href="/" class="logo">
+                    <i data-lucide="leaf"></i>
+                    GreenGURU
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="product-interface.html">Products</a>
+                    <a href="about.html">About</a>
+                    <a href="login.html" class="btn btn-secondary">Join Now</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Welcome to GreenGURU</h1>
+                    <p>Your one-stop shop for eco-friendly products. Join us in making the world a better place.</p>
+                    <div class="hero-buttons">
+                        <a href="product-interface.html" class="btn btn-secondary btn-lg">Shop Now</a>
+                        <a href="about.html" class="btn btn-outline btn-lg">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="carousel">
+                        <img src="scroll.png.jpg" alt="Eco-Friendly Product 1" class="eco-friendly-carousel active">
+                        <img src="scroll1.png.jpg" alt="Eco-Friendly Product 2" class="eco-friendly-carousel">
+                        <img src="scroll2.png" alt="Eco-Friendly Product 3" class="eco-friendly-carousel">
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="/product img/bottle.webp" alt="Eco-Friendly Product" id="hero-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="trusted-brands">
+            <div class="container">
+                <h2>Trusted by Leading Brands</h2>
+                <div class="brand-logos">
+                    <div class="brand-logo"><img src="/placeholder.svg?height=60&width=120&text=IKEA" alt="IKEA"></div>
+                    <div class="brand-logo"><img src="/placeholder.svg?height=60&width=120&text=Nike" alt="Nike"></div>
+                    <div class="brand-logo"><img src="/placeholder.svg?height=60&width=120&text=Amazon" alt="Amazon"></div>
+                    <div class="brand-logo"><img src="/placeholder.svg?height=60&width=120&text=Patagonia" alt="Patagonia"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <div class="container">
+                <h2>Our Products</h2>
+                <div class="product-grid" id="featured-products"></div>
+            </div>
+        </section>
+
+        <section class="eco-businesses">
+            <div class="container">
+                <h2>Featured Eco-Friendly Businesses</h2>
+                <div class="business-grid" id="eco-businesses"></div>
+            </div>
+        </section>
+
+        <section class="blog-articles">
+            <div class="container">
+                <h2>Latest from Our Blog</h2>
+                <div class="article-grid" id="blog-articles"></div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <h2>Join Our Green Community</h2>
+                <p>Stay updated with the latest eco-friendly products and sustainability tips</p>
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-secondary">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>About GreenGURU</h3>
+                    <p>We're on a mission to make sustainable living accessible and enjoyable for everyone.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="product-interface.html">All Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/shipping">Shipping & Returns</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GreenGURU. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenGuru - Your Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .cart-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .cart-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .product-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+        }
+        .btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .btn-outline {
+            background-color: white;
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+        .summary-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .summary-total {
+            font-weight: bold;
+            font-size: 1.2em;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        /* New styles for button responsiveness */
+        .btn-full {
+            width: 100%;
+            padding: 12px; /* Increased padding for better touch target */
+            margin-top: 20px;
+            box-sizing: border-box; /* Ensures padding is included in the button width */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Cart</h1>
+        <div class="cart-grid">
+            <div class="cart-items">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items">
+                        <!-- Cart items will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="summary-card">
+                <h2>Order Summary</h2>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax</span>
+                    <span id="tax">$0.00</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span id="total">$0.00</span>
+                </div>
+                <a href="billing-page.html" class="btn btn-full">Proceed to Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve cart items from localStorage
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function renderCartItems() {
+            const cartItemsElement = document.getElementById('cart-items');
+            if (cartItems.length === 0) {
+                cartItemsElement.innerHTML = `<tr><td colspan="5">Your cart is empty</td></tr>`;
+            } else {
+                cartItemsElement.innerHTML = cartItems.map(item => `
+                    <tr data-id="${item.id}">
+                        <td>
+                            <img src="${item.image}" alt="${item.name}" class="product-image">
+                            ${item.name}
+                        </td>
+                        <td>$${item.price.toFixed(2)}</td>
+                        <td>
+                            <button class="btn btn-outline decrease-quantity">-</button>
+                            <input type="number" value="${item.quantity}" min="1" class="quantity-input">
+                            <button class="btn btn-outline increase-quantity">+</button>
+                        </td>
+                        <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                        <td><button class="btn btn-outline remove-item">Remove</button></td>
+                    </tr>
+                `).join('');
+            }
+
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const tax = subtotal * 0.1; // Assuming 10% tax
+            const total = subtotal + tax;
+
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCartItems();
+
+            document.getElementById('cart-items').addEventListener('click', function(e) {
+                const target = e.target;
+                const row = target.closest('tr');
+                const itemId = parseInt(row.dataset.id);
+                const item = cartItems.find(item => item.id === itemId);
+
+                if (target.classList.contains('decrease-quantity')) {
+                    if (item.quantity > 1) {
+                        item.quantity--;
+                        localStorage.setItem('cart', JSON.stringify(cartItems));
+                        renderCartItems();
+                    }
+                } else if (target.classList.contains('increase-quantity')) {
+                    item.quantity++;
+                    localStorage.setItem('cart', JSON.stringify(cartItems));
+                    renderCartItems();
+                } else if (target.classList.contains('remove-item')) {
+                    const index = cartItems.findIndex(item => item.id === itemId);
+                    cartItems.splice(index, 1);
+                    localStorage.setItem('cart', JSON.stringify(cartItems));
+                    renderCartItems();
+                }
+            });
+
+            document.getElementById('cart-items').addEventListener('change', function(e) {
+                if (e.target.classList.contains('quantity-input')) {
+                    const row = e.target.closest('tr');
+                    const itemId = parseInt(row.dataset.id);
+                    const item = cartItems.find(item => item.id === itemId);
+                    const newQuantity = parseInt(e.target.value);
+                    if (newQuantity > 0) {
+                        item.quantity = newQuantity;
+                        localStorage.setItem('cart', JSON.stringify(cartItems));
+                        renderCartItems();
+                    } else {
+                        e.target.value = item.quantity;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

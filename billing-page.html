@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenGuru - Billing Information</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid #4caf50;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        /* Card Styles */
+        .card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 1.5rem;
+        }
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #34495e;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            color: #555;
+        }
+        input:focus, select:focus {
+            border-color: #4caf50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+        }
+        .btn {
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #43a047;
+        }
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .error {
+            color: #e74c3c;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        /* Checkbox Styles */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 1.5rem;
+        }
+        .checkbox-group input {
+            margin-right: 0.75rem;
+        }
+        /* Order Summary Styles */
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #34495e;
+        }
+        .summary-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        p {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Billing Information</h1>
+        <div class="grid">
+            <!-- Billing Form -->
+            <div class="card">
+                <h2 class="card-title">Your Information</h2>
+                <form id="billingForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                        <span class="error" id="fullNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="error" id="emailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" required>
+                        <span class="error" id="addressError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" required>
+                        <span class="error" id="cityError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country" name="country" required>
+                            <option value="">Select a country</option>
+                            <option value="in">India</option>
+                            <option value="us">United States</option>
+                            <option value="ca">Canada</option>
+                            <option value="uk">United Kingdom</option>
+                        </select>
+                        <span class="error" id="countryError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="postalCode">Postal Code</label>
+                        <input type="text" id="postalCode" name="postalCode" required>
+                        <span class="error" id="postalCodeError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" name="cardNumber" required>
+                        <span class="error" id="cardNumberError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date</label>
+                        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+                        <span class="error" id="expiryDateError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" name="cvv" required>
+                        <span class="error" id="cvvError"></span>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
+                        <label for="acceptTerms">I accept GreenGuru's terms of service and privacy policy</label>
+                    </div>
+                    <span class="error" id="acceptTermsError"></span>
+                    <button type="submit" class="btn" id="submitButton">Place Order</button>
+                </form>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="card">
+                <h2 class="card-title">Order Summary</h2>
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Tax</span>
+                    <span id="tax">$0.00</span>
+                </div>
+                <div class="summary-item summary-total">
+                    <span>Total</span>
+                    <span id="total">$0.00</span>
+                </div>
+                <p>By placing your order, you agree to GreenGuru's terms of service and privacy policy.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve the cart from localStorage
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Calculate subtotal, tax, and total
+            const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const tax = subtotal * 0.1; // Assuming a 10% tax rate
+            const total = subtotal + tax;
+
+            // Update the existing order summary values
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('billingForm');
+            const submitButton = document.getElementById('submitButton');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateForm()) {
+                    // Simulate form submission
+                    alert('Order placed successfully!');
+                    form.reset();
+                }
+            });
+
+            function validateForm() {
+                let isValid = true;
+
+                // Clear previous errors
+                document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+                // Validate each field
+                if (form.fullName.value.trim() === '') {
+                    document.getElementById('fullNameError').textContent = 'Full name is required.';
+                    isValid = false;
+                }
+                if (form.email.value.trim() === '' || !validateEmail(form.email.value)) {
+                    document.getElementById('emailError').textContent = 'A valid email is required.';
+                    isValid = false;
+                }
+                if (form.address.value.trim() === '') {
+                    document.getElementById('addressError').textContent = 'Address is required.';
+                    isValid = false;
+                }
+                if (form.city.value.trim() === '') {
+                    document.getElementById('cityError').textContent = 'City is required.';
+                    isValid = false;
+                }
+                if (form.country.value === '') {
+                    document.getElementById('countryError').textContent = 'Country is required.';
+                    isValid = false;
+                }
+                if (form.postalCode.value.trim() === '') {
+                    document.getElementById('postalCodeError').textContent = 'Postal code is required.';
+                    isValid = false;
+                }
+                if (form.cardNumber.value.trim() === '') {
+                    document.getElementById('cardNumberError').textContent = 'Card number is required.';
+                    isValid = false;
+                }
+                if (form.expiryDate.value.trim() === '') {
+                    document.getElementById('expiryDateError').textContent = 'Expiry date is required.';
+                    isValid = false;
+                }
+                if (form.cvv.value.trim() === '') {
+                    document.getElementById('cvvError').textContent = 'CVV is required.';
+                    isValid = false;
+                }
+                if (!form.acceptTerms.checked) {
+                    document.getElementById('acceptTermsError').textContent = 'You must accept the terms.';
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+        });
+    </script>
+</body>
+</html>

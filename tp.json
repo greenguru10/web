@@ -1,0 +1,5 @@
+[
+    {"name": "Eco-Friendly Water Bottle", "price": 24.99, "reviewCount": 200, "sustainabilityScore": 9, "description": "Our Eco-Friendly Water Bottle is made from 100% recycled materials and is BPA-free.", "imageUrl": "/images/water_bottle.jpg", "colors": ["Green", "Blue", "Black"], "sizes": ["500ml", "750ml", "1L"]},
+    {"name": "Reusable Bamboo Straw", "price": 5.99, "reviewCount": 120, "sustainabilityScore": 10, "description": "These reusable bamboo straws are eco-friendly and biodegradable.", "imageUrl": "/images/bamboo_straw.jpg", "colors": ["Natural", "Green"], "sizes": ["6 inches", "8 inches"]}
+    
+]
